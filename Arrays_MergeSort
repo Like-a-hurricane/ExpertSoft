@@ -1,0 +1,23 @@
+static void merge(ArrayList<Integer> A, ArrayList<Integer> B) {
+       
+    ArrayList<Integer> mergedArr = new ArrayList<>(A.size() + B.size());/*
+создаем   ArrayList  емкостью равной количеству элементов в исходных списках */
+   
+    int ai = 0, bi = 0;
+    while (ai < A.size() && bi < B.size()) {//пока не перенесутся все элементы из-какого либо списка
+        if (A.get(ai) < B.get(bi))
+            mergedArr.add(A.get(ai++));
+        else
+            mergedArr.add(B.get(bi++));  /* сравниваем первые элементы списков и вставляем в новый список меньший из элементов. 
+        Увличиваем индекс списка,элемент которого был выбран в итерации*/
+    }
+    while (ai < A.size())/*Смотрим,в каком списке остались элементы,
+        добавляем их в отсортированный список*/
+        mergedArr.add(A.get(ai++));
+    while (bi < B.size())
+       mergedArr.add(B.get(bi++));
+     A.clear();//очищаем исходный список A
+        A.addAll(mergedArr);// write the sorted collection to it
+ 
+    
+} 
